@@ -1,0 +1,114 @@
+/* Navbar */
+.navbar{
+    height:auto;
+    background:white;
+}
+
+.navbar-brand{
+    font-size:1.8rem;
+    color:#ff385c !important;
+}
+
+.nav-link{
+    color:#222 !important;
+    transition:0.3s;
+}
+
+.nav-link:hover{
+    color:#ff385c !important;
+}
+
+/* Search Bar */
+
+.search-bar{
+    width:420px;
+}
+
+.search-input{
+    border-radius:50px;
+    padding:0.6rem 1rem;
+    border:1px solid #ddd;
+    box-shadow:none;
+}
+
+.search-input:focus{
+    border-color:#ff385c;
+    box-shadow:0 0 0 0.15rem rgba(255,56,92,.25);
+}
+
+.search-btn{
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    background:#ff385c;
+    color:white;
+    border:none;
+    transition:0.3s;
+}
+
+.search-btn:hover{
+    background:#e03150;
+    color:white;
+}
+
+/* Dropdown */
+
+.dropdown-menu{
+    border:none;
+    border-radius:12px;
+}
+
+.dropdown-item:hover{
+    background:#fff1f3;
+    color:#ff385c;
+}
+
+/* Landing Page */
+.hero{
+    background:linear-gradient(135deg,#fff5f5,#ffe8ec);
+}
+
+.hero-img{
+    max-height:550px;
+    object-fit:cover;
+}
+
+.card{
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.btn{
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+
+
+/* Footer */
+
+.footer-link{
+    text-decoration:none;
+    color:#adb5bd;
+    transition:.3s;
+}
+
+.footer-link:hover{
+    color:#ff385c;
+}
+
+.social-icon{
+    color:#adb5bd;
+    transition:.3s;
+}
+
+.social-icon:hover{
+    color:#ff385c;
+    transform:translateY(-3px);
+}
