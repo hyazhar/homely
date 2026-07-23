@@ -1,15 +1,18 @@
-require("dotenv").config();
-const express = require('express');
-const app= express();
-const PORT = process.env.PORT || 3000;
+const express = require("express");
+const path = require("path");
+const app = express();
 
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// route
+// View Engine
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-
-// server Initializing
-app.listen(PORT,()=>{
-    console.log("Server Has Started");
+// Routes
+app.get("/", (req, res) => {
+    res.render("landingpage");
 });
 
-
+module.exports = app;
