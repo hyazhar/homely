@@ -1,89 +1,124 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
+    <div class="container flex-wrap">
 
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold fs-3 text-danger" href="/">
-            <i class="bi bi-house-heart-fill"></i> Homely
-        </a>
 
-        <!-- Mobile Toggle -->
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- Top Row -->
+        <div class="d-flex align-items-center w-100">
 
-        <!-- Navbar Content -->
-        <div class="collapse navbar-collapse" id="navbarNav">
 
-            <!-- Left Menu -->
-            <ul class="navbar-nav ms-4">
-                <li class="nav-item">
-                    <a href="/listings" class="nav-link fw-semibold">
-                        Explore
-                    </a>
-                </li>
-            </ul>
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold fs-3 text-danger" href="/">
+                <i class="bi bi-house-heart-fill"></i> Homely
+            </a>
 
-            <!-- Search Bar -->
-            <form class="d-flex mx-auto search-bar" role="search">
-                <input
-                    class="form-control search-input"
-                    type="search"
-                    placeholder="Search destinations"
-                    aria-label="Search"
-                >
 
-                <button class="btn search-btn ms-2" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </form>
+            <!-- Mobile Become Host -->
+            <a href="/listings/new"
+               class="nav-link fw-semibold d-lg-none ms-auto me-3">
+                Become a Host
+            </a>
 
-            <!-- Right Menu -->
-            <ul class="navbar-nav align-items-center">
 
-                <li class="nav-item me-3">
-                    <a href="/listings/new" class="nav-link fw-semibold">
-                        Become a Host
-                    </a>
-                </li>
+            <!-- Desktop Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
 
-                <li class="nav-item dropdown">
+                <ul class="navbar-nav ms-4 d-none d-lg-flex">
 
-                    <a
-                        class="nav-link dropdown-toggle d-flex align-items-center"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                    >
-                        <i class="bi bi-person-circle fs-4 me-2"></i>
-                        Account
-                    </a>
+                    <li class="nav-item">
+                        <a href="/listings"
+                           class="nav-link fw-semibold">
+                            Explore
+                        </a>
+                    </li>
 
-                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                </ul>
 
-                        <li>
-                            <a class="dropdown-item" href="/login">
-                                Login
-                            </a>
-                        </li>
 
-                        <li>
-                            <a class="dropdown-item" href="/signup">
-                                Sign Up
-                            </a>
-                        </li>
+                <ul class="navbar-nav ms-auto d-none d-lg-flex align-items-center">
 
-                    </ul>
+                    <li class="nav-item me-3">
+                        <a href="/listings/new"
+                           class="nav-link fw-semibold">
+                            Become a Host
+                        </a>
+                    </li>
 
-                </li>
 
-            </ul>
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                           href="#"
+                           data-bs-toggle="dropdown">
+
+                            <i class="bi bi-person-circle fs-4 me-2"></i>
+                            Account
+
+                        </a>
+
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+
+                            <li>
+                                <a class="dropdown-item" href="/login">
+                                    Login
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="/signup">
+                                    Sign Up
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- Mobile Toggle -->
+            <button
+                class="navbar-toggler d-lg-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
 
         </div>
+
+
+
+        <!-- Search Bar (Second Row) -->
+        <form class="d-flex w-100 justify-content-center my-3"
+              role="search">
+
+            <div class="input-group w-lg-50">
+
+                <input
+                    class="form-control rounded-start-pill px-4"
+                    type="search"
+                    placeholder="Search destinations">
+
+
+                <button
+                    class="btn btn-danger rounded-end-pill px-4">
+
+                    <i class="bi bi-search"></i>
+
+                </button>
+
+            </div>
+
+        </form>
+
 
     </div>
 </nav>
