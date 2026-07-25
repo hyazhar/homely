@@ -42,6 +42,23 @@ app.get("/listings", async (req, res, next) => {
     }
 });
 
+app.get("/listings/:id", async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const listing = await Listing.findById(id);
+        const relatedListings = await Listing.find({
+                country: listing.country,
+                 _id: { $ne: listing._id }
+                }).limit(3);
+        if (!listing) {
+            throw new ExpressError(404, "Listing Not Found");
+        }
+        res.render("show.ejs", { listing , relatedListings});
+    } catch (err) {
+        next(err);
+    }
+});
+
 // Errr Route
 app.all("/*splat", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found"));
