@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
     res.render("landingpage");
 });
-
+// Listings Routes
 app.get("/listings", wrapAsync(async (req, res) => {
     const search = req.query.search;
     let listings;
