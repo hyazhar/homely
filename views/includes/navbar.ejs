@@ -98,14 +98,16 @@
 
         <!-- Search Bar (Second Row) -->
         <form class="d-flex w-100 justify-content-center my-3"
-              role="search">
+              role="search" method="get" action="/listings">
 
             <div class="input-group w-lg-50">
 
                 <input
                     class="form-control rounded-start-pill px-4"
                     type="search"
-                    placeholder="Search destinations">
+                    placeholder="Search destinations"
+                    name="search"
+                    >
 
 
                 <button
