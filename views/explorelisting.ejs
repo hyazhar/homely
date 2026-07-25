@@ -1,47 +1,65 @@
 <% layout("/layouts/boilerplate") %>
+
 <div class="container mt-4">
     <h2 class="mb-4">All Listings</h2>
 
-    <div class="row">
+    <% if (listings.length === 0) { %>
 
-        <% listings.forEach((listing) => { %>
+        <div class="alert alert-warning text-center mt-5">
+            <h4>No Listings Found</h4>
 
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <% if (search) { %>
+                <p>No results found for <strong>"<%= search %>"</strong>.</p>
+            <% } else { %>
+                <p>There are currently no listings available.</p>
+            <% } %>
+        </div>
 
-                <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+    <% } else { %>
 
-                    <div class="card h-100 shadow-sm border-0">
+        <div class="row">
 
-                        <img
-                            src="<%= listing.image.url %>"
-                            class="card-img-top"
-                            alt="<%= listing.title %>"
-                            style="height:250px; object-fit:cover;"
-                        >
+            <% listings.forEach((listing) => { %>
 
-                        <div class="card-body">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
 
-                            <h5 class="card-title fw-bold">
-                                <%= listing.title %>
-                            </h5>
+                    <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
 
-                            <p class="card-text text-muted mb-1">
-                                📍 <%= listing.location %>, <%= listing.country %>
-                            </p>
+                        <div class="card h-100 shadow-sm border-0">
 
-                            <p class="card-text fs-5 fw-semibold text-success">
-                                ₹ <%= listing.price.toLocaleString("en-IN") %> / night
-                            </p>
+                            <img
+                                src="<%= listing.image.url %>"
+                                class="card-img-top"
+                                alt="<%= listing.title %>"
+                                style="height:250px; object-fit:cover;"
+                            >
+
+                            <div class="card-body">
+
+                                <h5 class="card-title fw-bold">
+                                    <%= listing.title %>
+                                </h5>
+
+                                <p class="card-text text-muted mb-1">
+                                    📍 <%= listing.location %>, <%= listing.country %>
+                                </p>
+
+                                <p class="card-text fs-5 fw-semibold text-success">
+                                    ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+                                </p>
+
+                            </div>
 
                         </div>
 
-                    </div>
+                    </a>
 
-                </a>
+                </div>
 
-            </div>
+            <% }) %>
 
-        <% }) %>
+        </div>
 
-    </div>
+    <% } %>
+
 </div>
