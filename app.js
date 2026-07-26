@@ -5,8 +5,10 @@ const engine= require('ejs-mate');
 const ExpressError = require("./utils/ExpressError");
 const Listing=require('./models/listingSchema');
 const wrapAsync= require('./utils/wrapAsync');
+const methodOverride = require("method-override");
 
 // Middleware
+app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -38,7 +40,7 @@ app.get("/listings", wrapAsync(async (req, res) => {
     res.render("explorelisting", { listings, search });
 }));
 
-app.get("/listings/:id", wrapAsync(async (req, res, next) => {
+app.get("/listings/:id", wrapAsync(async (req, res) => {
         const { id } = req.params;
         const listing = await Listing.findById(id);
           if (!listing) {
@@ -49,6 +51,29 @@ app.get("/listings/:id", wrapAsync(async (req, res, next) => {
                  _id: { $ne: listing._id }
                 }).limit(3);
         res.render("show", { listing , relatedListings});
+}));
+
+app.get("/listings/:id/edit", wrapAsync(async(req,res)=>{
+    const {id}=req.params;
+    const listing= await Listing.findById(id);
+    if(!listing){
+        throw new ExpressError(404, "Listing Not Found");
+    }
+    res.render('edit',{listing});
+}));
+
+app.put("/listings/:id", wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findByIdAndUpdate(id,req.body.listing,
+        {
+            new: true,
+            runValidators: true
+        }
+    );
+    if (!listing) {
+        throw new ExpressError(404, "Listing Not Found");
+    }
+    res.redirect(`/listings/${listing._id}`);
 }));
 
 // Errr Route
