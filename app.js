@@ -6,7 +6,7 @@ const ExpressError = require("./utils/ExpressError");
 const Listing=require('./models/listingSchema');
 const wrapAsync= require('./utils/wrapAsync');
 const methodOverride = require("method-override");
-
+const listingroute=require('./routes/listings')
 // Middleware
 app.use(methodOverride("_method"));
 app.use(express.json());
@@ -22,59 +22,7 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
     res.render("landingpage");
 });
-// Listings Routes
-app.get("/listings", wrapAsync(async (req, res) => {
-    const search = req.query.search;
-    let listings;
-    if (search) {
-        listings = await Listing.find({
-            $or: [
-                { title: { $regex: search, $options: "i" } },
-                { location: { $regex: search, $options: "i" } },
-                { country: { $regex: search, $options: "i" } }
-            ]
-        });
-    } else {
-        listings = await Listing.find({});
-    }
-    res.render("explorelisting", { listings, search });
-}));
-
-app.get("/listings/:id", wrapAsync(async (req, res) => {
-        const { id } = req.params;
-        const listing = await Listing.findById(id);
-          if (!listing) {
-            throw new ExpressError(404, "Listing Not Found");
-        }
-        const relatedListings = await Listing.find({
-                country: listing.country,
-                 _id: { $ne: listing._id }
-                }).limit(3);
-        res.render("show", { listing , relatedListings});
-}));
-
-app.get("/listings/:id/edit", wrapAsync(async(req,res)=>{
-    const {id}=req.params;
-    const listing= await Listing.findById(id);
-    if(!listing){
-        throw new ExpressError(404, "Listing Not Found");
-    }
-    res.render('edit',{listing});
-}));
-
-app.put("/listings/:id", wrapAsync(async (req, res) => {
-    const { id } = req.params;
-    const listing = await Listing.findByIdAndUpdate(id,req.body.listing,
-        {
-            new: true,
-            runValidators: true
-        }
-    );
-    if (!listing) {
-        throw new ExpressError(404, "Listing Not Found");
-    }
-    res.redirect(`/listings/${listing._id}`);
-}));
+app.use('/listings',listingroute);
 
 // Errr Route
 app.all("/*splat", (req, res, next) => {
