@@ -3,10 +3,9 @@ const path = require("path");
 const app = express();
 const engine= require('ejs-mate');
 const ExpressError = require("./utils/ExpressError");
-const Listing=require('./models/listingSchema');
-const wrapAsync= require('./utils/wrapAsync');
 const methodOverride = require("method-override");
-const listingroute=require('./routes/listings')
+const listingroute=require('./routes/listings');
+
 // Middleware
 app.use(methodOverride("_method"));
 app.use(express.json());
