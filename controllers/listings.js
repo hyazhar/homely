@@ -54,6 +54,8 @@ module.exports.renderEditForm = async (req, res) => {
 // PUT /listings/:id
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
+    console.log(req.file);
+    console.log(req.body);
     const listing = await Listing.findByIdAndUpdate(
         id,
         req.body.listing,
@@ -62,6 +64,13 @@ module.exports.updateListing = async (req, res) => {
             runValidators: true
         }
     );
+    if (req.file) {
+        listing.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+        await listing.save();
+    }
     if (!listing) {
         throw new ExpressError(404, "Listing Not Found");
     }

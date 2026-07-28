@@ -21,6 +21,7 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
     res.render("landingpage");
 });
+
 app.use('/listings',listingroute);
 
 // Errr Route
