@@ -5,6 +5,8 @@ const engine= require('ejs-mate');
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const listingroute=require('./routes/listings');
+const session= require('express-session');
+const flash = require("connect-flash");
 
 // Middleware
 app.use(methodOverride("_method"));
@@ -17,7 +19,25 @@ app.set("views", path.join(__dirname, "views"));
 app.engine("ejs",engine);
 app.set("view engine", "ejs");
 
-
+// Express Session
+app.use(
+    session({
+        secret: "yourSecretKey",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            httpOnly: true
+        }
+    })
+);
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
 // Routes
 app.get("/", (req, res) => {
     res.render("landingpage");

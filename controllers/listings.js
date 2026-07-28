@@ -74,5 +74,6 @@ module.exports.updateListing = async (req, res) => {
     if (!listing) {
         throw new ExpressError(404, "Listing Not Found");
     }
+    req.flash("success", "Listing Edited successfully!");
     res.redirect(`/listings/${listing._id}`);
 };
