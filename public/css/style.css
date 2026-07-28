@@ -1,66 +1,38 @@
-/* Navbar */
-.navbar{
-    height:auto;
-    background:white;
-}
-
 .navbar-brand{
-    font-size:1.8rem;
-    color:#ff385c !important;
+    letter-spacing: .5px;
 }
 
 .nav-link{
-    color:#222 !important;
-    transition:0.3s;
+    transition: .25s;
 }
 
 .nav-link:hover{
-    color:#ff385c !important;
+    color:#dc3545 !important;
 }
 
-/* Search Bar */
-
-.search-bar{
-    width:420px;
-}
-
-.search-input{
+.input-group{
+    background:white;
     border-radius:50px;
-    padding:0.6rem 1rem;
-    border:1px solid #ddd;
+}
+
+.form-control:focus{
     box-shadow:none;
 }
 
-.search-input:focus{
-    border-color:#ff385c;
-    box-shadow:0 0 0 0.15rem rgba(255,56,92,.25);
+.dropdown-toggle::after{
+    display:none;
 }
 
-.search-btn{
-    border-radius:50%;
-    width:45px;
-    height:45px;
-    background:#ff385c;
-    color:white;
-    border:none;
-    transition:0.3s;
+.dropdown-toggle{
+    transition:.3s;
 }
 
-.search-btn:hover{
-    background:#e03150;
-    color:white;
+.dropdown-toggle:hover{
+    box-shadow:0 .5rem 1rem rgba(0,0,0,.15);
 }
 
-/* Dropdown */
-
-.dropdown-menu{
-    border:none;
-    border-radius:12px;
-}
-
-.dropdown-item:hover{
-    background:#fff1f3;
-    color:#ff385c;
+.btn-danger{
+    border-radius:0;
 }
 
 /* Landing Page */

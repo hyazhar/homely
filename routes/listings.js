@@ -5,6 +5,9 @@ const listingsController = require("../controllers/listings");
 const multer = require("multer");
 const { storage } = require("../config/cloudConfig");
 const upload = multer({ storage });
+
+
+
 // GET /listings
 router.get("/",wrapAsync(listingsController.index)
 );

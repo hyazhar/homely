@@ -1,126 +1,95 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container flex-wrap">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top py-2">
+    <div class="container">
 
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold fs-3 text-danger" href="/">
+            <i class="bi bi-house-heart-fill"></i> Homely
+        </a>
 
-        <!-- Top Row -->
-        <div class="d-flex align-items-center w-100">
-
-
-            <!-- Logo -->
-            <a class="navbar-brand fw-bold fs-3 text-danger" href="/">
-                <i class="bi bi-house-heart-fill"></i> Homely
-            </a>
-
-
-            <!-- Mobile Become Host -->
-            <a href="/listings/new"
-               class="nav-link fw-semibold d-lg-none ms-auto me-3">
-                Become a Host
-            </a>
-
-
-            <!-- Desktop Menu -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-
-                <ul class="navbar-nav ms-4 d-none d-lg-flex">
-
-                    <li class="nav-item">
-                        <a href="/listings"
-                           class="nav-link fw-semibold">
-                            Explore
-                        </a>
-                    </li>
-
-                </ul>
-
-
-                <ul class="navbar-nav ms-auto d-none d-lg-flex align-items-center">
-
-                    <li class="nav-item me-3">
-                        <a href="/listings/new"
-                           class="nav-link fw-semibold">
-                            Become a Host
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle d-flex align-items-center"
-                           href="#"
-                           data-bs-toggle="dropdown">
-
-                            <i class="bi bi-person-circle fs-4 me-2"></i>
-                            Account
-
-                        </a>
-
-
-                        <ul class="dropdown-menu dropdown-menu-end shadow">
-
-                            <li>
-                                <a class="dropdown-item" href="/login">
-                                    Login
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="/signup">
-                                    Sign Up
-                                </a>
-                            </li>
-
-                        </ul>
-
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-
-            <!-- Mobile Toggle -->
-            <button
-                class="navbar-toggler d-lg-none"
+        <!-- Toggle -->
+        <button class="navbar-toggler border-0"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <span class="navbar-toggler-icon"></span>
+        <div class="collapse navbar-collapse" id="navbarNav">
 
-            </button>
+            <!-- Left Menu -->
+            <ul class="navbar-nav ms-4">
+                <li class="nav-item">
+                    <a href="/listings" class="nav-link fw-semibold">
+                        Explore
+                    </a>
+                </li>
+            </ul>
 
+            <!-- Search -->
+            <form class="mx-auto my-3 my-lg-0"
+                  action="/listings"
+                  method="GET"
+                  style="max-width:500px; width:100%;">
+
+                <div class="input-group shadow-sm rounded-pill overflow-hidden">
+
+                    <input
+                        class="form-control border-0 px-4"
+                        type="search"
+                        name="search"
+                        placeholder="Search destinations">
+
+                    <button class="btn btn-danger px-4">
+                        <i class="bi bi-search"></i>
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- Right Menu -->
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a href="/listings/new"
+                       class="nav-link fw-semibold">
+                        Become a Host
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown ms-lg-3">
+
+                    <a class="nav-link dropdown-toggle border rounded-pill px-3 py-2 shadow-sm"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown">
+
+                        <i class="bi bi-list me-2"></i>
+                        <i class="bi bi-person-circle"></i>
+
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <a class="dropdown-item" href="/login">
+                                Login
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="/signup">
+                                Sign Up
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
 
         </div>
-
-
-
-        <!-- Search Bar (Second Row) -->
-        <form class="d-flex w-100 justify-content-center my-3"
-              role="search" method="get" action="/listings">
-
-            <div class="input-group w-lg-50">
-
-                <input
-                    class="form-control rounded-start-pill px-4"
-                    type="search"
-                    placeholder="Search destinations"
-                    name="search"
-                    >
-
-
-                <button
-                    class="btn btn-danger rounded-end-pill px-4">
-
-                    <i class="bi bi-search"></i>
-
-                </button>
-
-            </div>
-
-        </form>
-
 
     </div>
 </nav>
