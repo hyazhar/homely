@@ -75,3 +75,13 @@ module.exports.updateListing = async (req, res) => {
     req.flash("success", "Listing Edited successfully!");
     res.redirect(`/listings/${listing._id}`);
 };
+
+module.exports.destroyListing = async (req, res) => {
+    const { id } = req.params;
+    const deletedListing = await Listing.findByIdAndDelete(id);
+    if (!deletedListing) {
+        throw new ExpressError(404, "Listing Not Found");
+    }
+    req.flash("success", "Listing deleted successfully.");
+    res.redirect("/listings");
+};

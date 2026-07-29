@@ -22,4 +22,8 @@ router.get("/:id/edit",isLoggedIn,wrapAsync(listingsController.renderEditForm)
 router.put("/:id",isLoggedIn,upload.single("listing[image]"),wrapAsync(listingsController.updateListing)
 );
 
+router.delete("/:id",
+        isLoggedIn,
+        wrapAsync(listingsController.destroyListing)
+    );
 module.exports = router;
