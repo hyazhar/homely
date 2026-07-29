@@ -54,8 +54,6 @@ module.exports.renderEditForm = async (req, res) => {
 // PUT /listings/:id
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
-    console.log(req.file);
-    console.log(req.body);
     const listing = await Listing.findByIdAndUpdate(
         id,
         req.body.listing,

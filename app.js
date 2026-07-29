@@ -5,6 +5,7 @@ const engine= require('ejs-mate');
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const listingroute=require('./routes/listings');
+const userRoutes = require("./routes/user");
 const session= require('express-session');
 const flash = require("connect-flash");
 
@@ -56,44 +57,7 @@ app.get("/", (req, res) => {
     res.render("landingpage");
 });
 app.use('/listings',listingroute);
-
-app.get('/signup',(req,res)=>{
-    res.render('signup');
-});
-
-app.post("/signup", async (req, res) => {
-    const { username, email, password} = req.body;
-    const user = new User({
-        username,
-        email,
-    });
-    const registeredUser = await User.register(
-        user,
-        password
-    );
-    req.flash("success", "Welcome to Homely!");
-    res.redirect("/listings");
-});
-
-app.get('/login',(req,res)=>{
-    res.render('login')
-});
-
-app.post("/login",passport.authenticate("local", {failureRedirect: "/login",failureFlash: true}),(req, res) => {
-        req.flash("success","Welcome back!");
-        res.redirect("/listings");
-    }
-);
-app.get("/logout", (req, res, next) => {
-    req.logout(function(err){
-        if(err){
-            return next(err);
-        }
-        req.flash("success","Logged out successfully."
-        );
-        res.redirect("/");
-    });
-});
+app.use("/", userRoutes);
 
 // Errr Route
 app.all("/*splat", (req, res, next) => {
