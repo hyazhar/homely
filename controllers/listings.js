@@ -44,7 +44,7 @@ module.exports.createListing= async(req,res)=>{
 // GET /listings/:id
 module.exports.showListing = async (req, res) => {
     const { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate('owner');
     if (!listing) {
         throw new ExpressError(404, "Listing Not Found");
     }

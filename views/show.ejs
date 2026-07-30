@@ -23,6 +23,11 @@
 
                 <div class="card-body">
 
+                    <% if (listing.owner) { %>
+                     <p class="text-muted">Hosted by <strong><%= listing.owner.username %></strong> </p>
+                    <% } else 
+                    { %><p class="text-muted"> Hosted by <strong>Homely Host</strong></p>
+                    <% } %>
                     <!-- Location -->
                     <p class="text-muted fs-5">
                         📍 <%= listing.location %>, <%= listing.country %>
