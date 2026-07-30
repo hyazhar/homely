@@ -22,6 +22,25 @@ module.exports.index = async (req, res) => {
     });
 };
 
+module.exports.renderCreatelisting= async(req,res)=>{
+    res.render('new');
+};
+module.exports.createListing= async(req,res)=>{
+    const newListing = new Listing(req.body.listing);
+    // Save image from Cloudinary
+    if (req.file) {
+        newListing.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+    }
+    // Save owner
+    newListing.owner = req.user._id;
+    await newListing.save();
+    req.flash("success", "New Listing Created Successfully!");
+    res.redirect(`/listings/${newListing._id}`);
+}
+
 // GET /listings/:id
 module.exports.showListing = async (req, res) => {
     const { id } = req.params;
