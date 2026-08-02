@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync");
-const { isLoggedIn } = require("../middleware/Isloggedin");
+const { isLoggedIn,validateReview } = require("../middleware/Isloggedin");
 const reviewsController = require("../controllers/reviews");
 
 
@@ -11,7 +11,7 @@ router.get("/new",isLoggedIn,
 
 router.post(
     "/",
-    isLoggedIn,
+    isLoggedIn,validateReview,
     wrapAsync(reviewsController.createReview)
 );
 

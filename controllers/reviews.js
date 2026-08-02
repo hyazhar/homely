@@ -3,7 +3,6 @@ const Review = require("../models/reviewSchema");
 const ExpressError= require('../utils/ExpressError')
 
 module.exports.renderReviewForm = async (req, res) => {
-    console.log("Review form route hit");
     const { id } = req.params;
     const listing = await Listing.findById(id);
     if (!listing) {
