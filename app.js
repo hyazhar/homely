@@ -6,6 +6,7 @@ const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const listingroute=require('./routes/listings');
 const userRoutes = require("./routes/user");
+const reviewRoutes= require('./routes/reviews');
 const session= require('express-session');
 const flash = require("connect-flash");
 
@@ -57,7 +58,7 @@ app.get("/", (req, res) => {
     res.render("landingpage");
 });
 app.use('/listings',listingroute);
-
+app.use("/listings/:id/reviews",reviewRoutes);
 app.use("/", userRoutes);
 
 // Errr Route
