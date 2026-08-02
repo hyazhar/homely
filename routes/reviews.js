@@ -4,9 +4,11 @@ const wrapAsync = require("../utils/wrapAsync");
 const { isLoggedIn } = require("../middleware/Isloggedin");
 const reviewsController = require("../controllers/reviews");
 
+
 router.get("/new",isLoggedIn,
     wrapAsync(reviewsController.renderReviewForm)
 );
+
 router.post(
     "/",
     isLoggedIn,
@@ -18,5 +20,19 @@ router.delete(
     isLoggedIn,
     wrapAsync(reviewsController.destroyReview)
 );
+
+router.get(
+    "/:reviewId/edit",
+    isLoggedIn,
+    wrapAsync(reviewsController.renderEditReviewForm)
+);
+
+// Update Review
+router.put(
+    "/:reviewId",
+    isLoggedIn,
+    wrapAsync(reviewsController.updateReview)
+);
+
 
 module.exports = router;
