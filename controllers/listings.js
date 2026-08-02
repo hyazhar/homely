@@ -16,14 +16,14 @@ module.exports.index = async (req, res) => {
     } else {
         listings = await Listing.find({});
     }
-    res.render("explorelisting", {
+    res.render("listings/explorelisting", {
         listings,
         search
     });
 };
 
 module.exports.renderCreatelisting= async(req,res)=>{
-    res.render('new');
+    res.render('listings/new');
 };
 module.exports.createListing= async(req,res)=>{
     const newListing = new Listing(req.body.listing);
@@ -56,7 +56,7 @@ module.exports.showListing = async (req, res) => {
         country: listing.country,
         _id: { $ne: listing._id }
     }).limit(3);
-    res.render("show", {
+    res.render("listings/show", {
         listing,
         relatedListings
     });
@@ -69,7 +69,7 @@ module.exports.renderEditForm = async (req, res) => {
     if (!listing) {
         throw new ExpressError(404, "Listing Not Found");
     }
-    res.render("edit", {
+    res.render("listings/edit", {
         listing
     });
 
