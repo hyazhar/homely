@@ -1,9 +1,10 @@
 const User = require("../models/userSchema");
+const Listing = require("../models/listingSchema");
+
 
 module.exports.renderSignupForm = (req, res) => {
     res.render("signup");
 };
-
 module.exports.signup = async (req, res) => {
     const { username, email, password } = req.body;
     const user = new User({
@@ -32,4 +33,11 @@ module.exports.logout = (req, res, next) => {
         req.flash("success", "Logged out successfully.");
         res.redirect("/");
     });
+}
+
+module.exports.dashboard = async(req, res) => {
+    const listings = await Listing.find({
+        owner: req.user._id
+    });
+    res.render("dashboard", {listings});
 };
