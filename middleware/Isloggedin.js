@@ -1,8 +1,8 @@
 const ExpressError = require("../utils/ExpressError");
 const { listingSchema,reviewSchema } = require("../schemas");
 const Review = require("../models/reviewSchema");
+const Listing=require('../models/listingSchema');
 // Login Middleware
-
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.flash("error", "You must be logged in first.");
@@ -54,6 +54,7 @@ module.exports.isOwner = async (req, res, next) => {
     }
     next();
 };
+
 module.exports.isReviewAuthor = async (req, res, next) => {
     const { id, reviewId } = req.params;
     const review = await Review.findById(reviewId);
