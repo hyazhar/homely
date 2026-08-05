@@ -54,8 +54,6 @@ module.exports.isOwner = async (req, res, next) => {
     }
     next();
 };
-
-
 module.exports.isReviewAuthor = async (req, res, next) => {
     const { id, reviewId } = req.params;
     const review = await Review.findById(reviewId);
