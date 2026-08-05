@@ -5,7 +5,7 @@ const listingsController = require("../controllers/listings");
 const multer = require("multer");
 const { storage } = require("../config/cloudConfig");
 const upload = multer({ storage });
-const {isLoggedIn}= require('../middleware/Isloggedin');
+const {isLoggedIn,isOwner}= require('../middleware/Isloggedin');
 const {validateListing}= require('../middleware/Isloggedin');
 
 
@@ -23,15 +23,15 @@ router.get("/:id",isLoggedIn,wrapAsync(listingsController.showListing)
 );
 
 // GET /listings/:id/edit
-router.get("/:id/edit",isLoggedIn,wrapAsync(listingsController.renderEditForm)
+router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingsController.renderEditForm)
 );
 
 // PUT /listings/:id
-router.put("/:id",isLoggedIn,upload.single("listing[image]"),wrapAsync(listingsController.updateListing)
+router.put("/:id",isLoggedIn,isOwner,upload.single("listing[image]"),wrapAsync(listingsController.updateListing)
 );
 
 router.delete("/:id",
-        isLoggedIn,
+        isLoggedIn,isOwner,
         wrapAsync(listingsController.destroyListing)
     );
 module.exports = router;

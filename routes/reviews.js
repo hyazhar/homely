@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync");
-const { isLoggedIn,validateReview } = require("../middleware/Isloggedin");
+const { isLoggedIn,validateReview,isReviewAuthor } = require("../middleware/Isloggedin");
 const reviewsController = require("../controllers/reviews");
 
 
@@ -17,20 +17,20 @@ router.post(
 
 router.delete(
     "/:reviewId",
-    isLoggedIn,
+    isLoggedIn,isReviewAuthor,
     wrapAsync(reviewsController.destroyReview)
 );
 
 router.get(
     "/:reviewId/edit",
-    isLoggedIn,
+    isLoggedIn,isReviewAuthor,
     wrapAsync(reviewsController.renderEditReviewForm)
 );
 
 // Update Review
 router.put(
     "/:reviewId",
-    isLoggedIn,
+    isLoggedIn,isReviewAuthor,
     wrapAsync(reviewsController.updateReview)
 );
 
