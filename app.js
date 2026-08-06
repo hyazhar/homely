@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const listingroute=require('./routes/listings');
 const userRoutes = require("./routes/user");
 const reviewRoutes= require('./routes/reviews');
+const adminRoutes= require('./routes/admin');
 const session= require('express-session');
 const flash = require("connect-flash");
 
@@ -60,6 +61,7 @@ app.get("/", (req, res) => {
 app.use('/listings',listingroute);
 app.use("/listings/:id/reviews",reviewRoutes);
 app.use("/", userRoutes);
+app.use("/admin", adminRoutes);
 
 // Errr Route
 app.all("/*splat", (req, res, next) => {

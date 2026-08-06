@@ -232,6 +232,21 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
+                <% if(currentUser.role === "admin"){ %>
+
+<li>
+
+    <a class="dropdown-item py-2 text-primary fw-semibold" href="/admin">
+
+        <i class="bi bi-shield-lock-fill me-2"></i>
+
+        Admin Panel
+
+    </a>
+
+</li>
+
+<% } %>
 
                 <li>
 
@@ -246,6 +261,7 @@
                     </a>
 
                 </li>
+                
 
             <% } %>
 

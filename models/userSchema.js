@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
 
         role: {
             type: String,
-            enum: ["user", "host"],
+            enum: ["user", "host","admin"],
             default: "user",
         },
 
@@ -54,6 +54,7 @@ const userSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
+
 userSchema.post("findOneAndDelete", async (user) => {
     if (!user) return;
     // Delete all reviews by the user

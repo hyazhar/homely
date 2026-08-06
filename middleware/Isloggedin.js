@@ -66,3 +66,18 @@ module.exports.isReviewAuthor = async (req, res, next) => {
     }
     next();
 };
+
+module.exports.isAdmin = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        req.flash("error", "Please login first.");
+        return res.redirect("/login");
+
+    }
+    if (req.user.role !== "admin") {
+
+        req.flash("error", "Access Denied!");
+
+        return res.redirect("/");
+    }
+    next();
+};

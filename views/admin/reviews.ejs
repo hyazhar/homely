@@ -1,0 +1,217 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-4">
+
+    <!-- Header -->
+
+    <div class="card shadow border-0 rounded-4 mb-4">
+
+        <div class="card-body d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <h2 class="fw-bold mb-1">
+
+                    <i class="bi bi-chat-left-text-fill text-warning me-2"></i>
+
+                    Manage Reviews
+
+                </h2>
+
+                <p class="text-muted mb-0">
+
+                    Total Reviews :
+                    <strong><%= reviews.length %></strong>
+
+                </p>
+
+            </div>
+
+            <a
+                href="/admin"
+                class="btn btn-dark rounded-pill px-4">
+
+                <i class="bi bi-arrow-left me-2"></i>
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <% if(reviews.length === 0){ %>
+
+        <div class="alert alert-info text-center shadow rounded-4">
+
+            <h4>No Reviews Found</h4>
+
+        </div>
+
+    <% } else { %>
+
+    <div class="card border-0 shadow rounded-4">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>User</th>
+
+                        <th>Rating</th>
+
+                        <th>Comment</th>
+
+                        <th>Date</th>
+
+                        <th class="text-center">
+
+                            Actions
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% reviews.forEach((review,index)=>{ %>
+
+                    <tr>
+
+                        <!-- Number -->
+
+                        <td>
+
+                            <%= index+1 %>
+
+                        </td>
+
+                        <!-- User -->
+
+                        <td>
+
+                            <div class="d-flex align-items-center">
+
+                                <img
+
+                                    src="<%= review.owner?.avatar?.url || 'https://cdn-icons-png.flaticon.com/512/149/149071.png' %>"
+
+                                    width="50"
+
+                                    height="50"
+
+                                    class="rounded-circle border"
+
+                                    style="object-fit:cover;">
+
+                                <div class="ms-3">
+
+                                    <h6 class="fw-bold mb-0">
+
+                                        <%= review.owner ? review.owner.username : "Deleted User" %>
+
+                                    </h6>
+
+                                    <small class="text-muted">
+
+                                        <%= review.owner ? review.owner.email : "" %>
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <!-- Rating -->
+
+                        <td>
+
+                            <span class="badge bg-warning text-dark px-3 py-2">
+
+                                ⭐ <%= review.rating %> / 5
+
+                            </span>
+
+                        </td>
+
+                        <!-- Comment -->
+
+                        <td style="max-width:350px;">
+
+                            <%= review.comment %>
+
+                        </td>
+
+                        <!-- Date -->
+
+                        <td>
+
+                            <%= review.createdAt.toDateString() %>
+
+                        </td>
+
+                        <!-- Actions -->
+
+                        <td>
+
+                            <div class="d-flex justify-content-center gap-2">
+
+                                <a
+
+                                    href="/listings/<%= review.listing %>"
+
+                                    class="btn btn-sm btn-outline-primary rounded-pill">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </a>
+
+                                <form
+
+                                    action="/admin/reviews/<%= review._id %>?_method=DELETE"
+
+                                    method="POST"
+
+                                    onsubmit="return confirm('Delete this review?')">
+
+                                    <button
+
+                                        class="btn btn-sm btn-outline-danger rounded-pill">
+
+                                        <i class="bi bi-trash"></i>
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <% } %>
+
+</div>

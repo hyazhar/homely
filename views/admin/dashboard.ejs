@@ -1,0 +1,358 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="card border-0 shadow rounded-4 mb-5 bg-dark text-white">
+
+        <div class="card-body p-5">
+
+            <h2 class="fw-bold">
+                <i class="bi bi-speedometer2 me-2"></i>
+                Admin Dashboard
+            </h2>
+
+            <p class="mb-0">
+                Welcome, <strong><%= currentUser.username %></strong>. Manage Homely from one place.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow rounded-4 text-center">
+
+                <div class="card-body py-4">
+
+                    <i class="bi bi-people-fill display-4 text-primary"></i>
+
+                    <h2 class="fw-bold mt-3">
+                        <%= totalUsers %>
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Total Users
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow rounded-4 text-center">
+
+                <div class="card-body py-4">
+
+                    <i class="bi bi-house-door-fill display-4 text-danger"></i>
+
+                    <h2 class="fw-bold mt-3">
+                        <%= totalListings %>
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Total Listings
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow rounded-4 text-center">
+
+                <div class="card-body py-4">
+
+                    <i class="bi bi-chat-left-text-fill display-4 text-warning"></i>
+
+                    <h2 class="fw-bold mt-3">
+                        <%= totalReviews %>
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Total Reviews
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="card border-0 shadow rounded-4 mb-5">
+
+        <div class="card-body">
+
+            <h4 class="fw-bold mb-4">
+
+                Quick Actions
+
+            </h4>
+
+            <div class="row g-3">
+
+                <div class="col-md-3">
+
+                    <a href="/admin/users"
+                       class="btn btn-primary w-100 py-3">
+
+                        <i class="bi bi-people-fill fs-4 d-block mb-2"></i>
+
+                        Manage Users
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a href="/admin/listings"
+                       class="btn btn-danger w-100 py-3">
+
+                        <i class="bi bi-house-fill fs-4 d-block mb-2"></i>
+
+                        Manage Listings
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a href="/admin/reviews"
+                       class="btn btn-warning w-100 py-3">
+
+                        <i class="bi bi-star-fill fs-4 d-block mb-2"></i>
+
+                        Manage Reviews
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a href="/listings"
+                       class="btn btn-success w-100 py-3">
+
+                        <i class="bi bi-eye-fill fs-4 d-block mb-2"></i>
+
+                        View Website
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Users -->
+
+    <div class="card border-0 shadow rounded-4 mb-5">
+
+        <div class="card-header bg-white border-0">
+
+            <h4 class="fw-bold mb-0">
+
+                Recent Users
+
+            </h4>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Username</th>
+
+                        <th>Email</th>
+
+                        <th>Role</th>
+
+                        <th>Joined</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% recentUsers.forEach(user=>{ %>
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+
+                                    <%= user.username %>
+
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <%= user.email %>
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge bg-dark">
+
+                                    <%= user.role %>
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <%= user.createdAt.toDateString() %>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Listings -->
+
+    <div class="card border-0 shadow rounded-4">
+
+        <div class="card-header bg-white border-0">
+
+            <h4 class="fw-bold mb-0">
+
+                Recent Listings
+
+            </h4>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Image</th>
+
+                        <th>Title</th>
+
+                        <th>Owner</th>
+
+                        <th>Price</th>
+
+                        <th>Country</th>
+
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% recentListings.forEach(listing=>{ %>
+
+                        <tr>
+
+                            <td>
+
+                                <img
+                                    src="<%= listing.image.url %>"
+                                    width="70"
+                                    height="50"
+                                    class="rounded"
+                                    style="object-fit:cover;">
+
+                            </td>
+
+                            <td>
+
+                                <strong>
+
+                                    <%= listing.title %>
+
+                                </strong>
+
+                            </td>
+
+                            <td>
+
+                                <%= listing.owner ? listing.owner.username : "Unknown" %>
+
+                            </td>
+
+                            <td>
+
+                                ₹ <%= listing.price.toLocaleString("en-IN") %>
+
+                            </td>
+
+                            <td>
+
+                                <%= listing.country %>
+
+                            </td>
+
+                            <td>
+
+                                <a
+                                    href="/listings/<%= listing._id %>"
+                                    class="btn btn-sm btn-outline-dark">
+
+                                    View
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
