@@ -32,14 +32,12 @@ module.exports.validateReview = (req, res, next) => {
         const msg = error.details
             .map(el => el.message)
             .join(",");
-
         throw new ExpressError(400, msg);
     }
 
     next();
 
 };
-
 // isowner middleware
 module.exports.isOwner = async (req, res, next) => {
     const { id } = req.params;

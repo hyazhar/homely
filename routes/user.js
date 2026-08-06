@@ -5,7 +5,28 @@ const LocalStrategy=require('passport-local')
 const wrapAsync = require("../utils/wrapAsync");
 const usersController = require("../controllers/user");
 const {isLoggedIn}= require('../middleware/Isloggedin');
+const multer = require("multer");
+const { storage } = require("../config/cloudConfig");
+const upload = multer({ storage });
 
+router.get("/profile",isLoggedIn,wrapAsync(usersController.renderProfile));
+router.get(
+    "/profile/edit",
+    isLoggedIn,
+    wrapAsync(usersController.renderEditProfile)
+);
+// Update Profile
+router.put(
+    "/profile",
+    isLoggedIn,
+    upload.single("avatar"),
+    wrapAsync(usersController.updateProfile)
+);
+router.delete(
+    "/profile",
+    isLoggedIn,
+    wrapAsync(usersController.deleteAccount)
+);
 router.route("/signup")
     .get(usersController.renderSignupForm)
     .post(wrapAsync(usersController.signup));
