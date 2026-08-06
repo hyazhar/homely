@@ -2,6 +2,7 @@ const User = require("../models/userSchema");
 const Listing = require("../models/listingSchema");
 const Review= require("../models/reviewSchema");
 
+// Profile Route
 module.exports.renderProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
     const totalListings = await Listing.countDocuments({

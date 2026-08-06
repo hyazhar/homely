@@ -38,21 +38,76 @@
 
     <!-- Statistics -->
 
-    <div class="d-flex justify-content-between">
+    <div class="row g-4 mb-5">
 
-    <span class="badge bg-success">
+        <div class="col-md-4">
 
-        Active
+            <div class="card border-0 shadow-sm rounded-4 text-center">
 
-    </span>
+                <div class="card-body py-4">
 
-    <span class="text-warning">
+                    <i class="bi bi-house-door-fill display-4 text-danger"></i>
 
-        ⭐ 4.8
+                    <h2 class="fw-bold mt-3">
+                        <%= listings.length %>
+                    </h2>
 
-    </span>
+                    <p class="text-muted mb-0">
+                        My Listings
+                    </p>
 
-</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center">
+
+                <div class="card-body py-4">
+
+                    <i class="bi bi-star-fill display-4 text-warning"></i>
+
+                    <h2 class="fw-bold mt-3">
+                        --
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Average Rating
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center">
+
+                <div class="card-body py-4">
+
+                    <i class="bi bi-chat-left-text-fill display-4 text-primary"></i>
+
+                    <h2 class="fw-bold mt-3">
+                        --
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Total Reviews
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 
 
     <!-- Listings -->
