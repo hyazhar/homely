@@ -1,102 +1,58 @@
 <% layout("/layouts/boilerplate") %>
-    <div class="row mb-5">
-        <div class="col-lg-12">
+    <div class="card border-0 rounded-4 shadow-lg mb-5 text-white"
+     style="background:linear-gradient(135deg,#ff5a5f,#ff385c);">
 
-            <div class="card border-0 shadow rounded-4 bg-danger text-white">
+    <div class="card-body p-5">
 
-                <div class="card-body p-5">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
 
-                    <h2 class="fw-bold">
-                        👋 Welcome,
-                        <%= currentUser.username %>
-                    </h2>
+            <div>
 
-                    <p class="mb-0 fs-5">
-                        Manage your listings and track your hosting journey.
-                    </p>
+                <h2 class="fw-bold mb-2">
+                    Welcome back,
+                    <%= currentUser.username %> 👋
+                </h2>
 
-                </div>
+                <p class="mb-0 opacity-75">
+                    Manage your listings, reviews and profile from one place.
+                </p>
 
             </div>
+
+            <a href="/listings/new"
+               class="btn btn-light rounded-pill px-4 mt-3 mt-lg-0">
+
+                <i class="bi bi-plus-circle me-2"></i>
+
+                New Listing
+
+            </a>
 
         </div>
 
     </div>
+
+</div>
 
 
 
     <!-- Statistics -->
 
-    <div class="row g-4 mb-5">
+    <div class="d-flex justify-content-between">
 
-        <div class="col-md-4">
+    <span class="badge bg-success">
 
-            <div class="card border-0 shadow-sm rounded-4 text-center">
+        Active
 
-                <div class="card-body py-4">
+    </span>
 
-                    <i class="bi bi-house-door-fill display-4 text-danger"></i>
+    <span class="text-warning">
 
-                    <h2 class="fw-bold mt-3">
-                        <%= listings.length %>
-                    </h2>
+        ⭐ 4.8
 
-                    <p class="text-muted mb-0">
-                        My Listings
-                    </p>
+    </span>
 
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm rounded-4 text-center">
-
-                <div class="card-body py-4">
-
-                    <i class="bi bi-star-fill display-4 text-warning"></i>
-
-                    <h2 class="fw-bold mt-3">
-                        --
-                    </h2>
-
-                    <p class="text-muted mb-0">
-                        Average Rating
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm rounded-4 text-center">
-
-                <div class="card-body py-4">
-
-                    <i class="bi bi-chat-left-text-fill display-4 text-primary"></i>
-
-                    <h2 class="fw-bold mt-3">
-                        --
-                    </h2>
-
-                    <p class="text-muted mb-0">
-                        Total Reviews
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
+</div>
 
 
     <!-- Listings -->
