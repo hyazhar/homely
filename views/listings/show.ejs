@@ -48,7 +48,71 @@
                     <h4 class="text-success fw-bold">
                         ₹ <%= listing.price.toLocaleString("en-IN") %> / night
                     </h4>
+                    <hr>
+<h5 class="fw-bold mb-3">
+    <i class="bi bi-person-badge-fill text-danger me-2"></i>
+    Meet Your Host
+</h5>
 
+<div class="card border-0 bg-light rounded-4 shadow-sm">
+
+    <div class="card-body">
+
+        <div class="d-flex align-items-center">
+
+            <img
+                src="<%= listing.owner && listing.owner.avatar ? listing.owner.avatar.url : 'https://cdn-icons-png.flaticon.com/512/149/149071.png' %>"
+                alt="Host"
+                class="rounded-circle border shadow-sm"
+                width="90"
+                height="90"
+                style="object-fit:cover;">
+
+            <div class="ms-4 flex-grow-1">
+
+                <h4 class="fw-bold mb-2">
+                    <%= listing.owner ? listing.owner.username : "Homely Host" %>
+                </h4>
+
+                <p class="mb-2 text-muted">
+                    <i class="bi bi-envelope-fill text-danger me-2"></i>
+
+                    <%= listing.owner ? listing.owner.email : "Not Available" %>
+                </p>
+
+                <p class="mb-2">
+                    <i class="bi bi-telephone-fill text-success me-2"></i>
+
+                    <%= listing.owner && listing.owner.phone ? listing.owner.phone : "Phone number not available" %>
+                </p>
+
+                <p class="mb-2">
+                    <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+
+                    <%= listing.owner && listing.owner.location ? listing.owner.location : "Location not provided" %>
+                </p>
+
+                <% if(listing.owner && listing.owner.bio){ %>
+
+                    <p class="text-secondary mb-0">
+                        <%= listing.owner.bio %>
+                    </p>
+
+                <% } else { %>
+
+                    <p class="text-secondary mb-0 fst-italic">
+                        This host hasn't added a bio yet.
+                    </p>
+
+                <% } %>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
                     <!-- Buttons -->
                     <div class="mt-4 d-flex gap-3">
                         <a
