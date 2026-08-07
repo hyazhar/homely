@@ -29,7 +29,7 @@ app.set("view engine", "ejs");
 // Express Session
 app.use(
     session({
-        secret: "yourSecretKey",
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
