@@ -192,56 +192,61 @@
 
 <!-- Danger Zone -->
 
-<div class="card border-danger mt-5">
+<% if (currentUser.role !== "admin") { %>
 
-    <div class="card-header bg-danger text-white">
+    <div class="card border-danger shadow-sm rounded-4 overflow-hidden mt-4">
 
-        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <div class="card-header bg-danger text-white">
 
-        Danger Zone
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+            Danger Zone
+
+        </div>
+
+        <div class="card-body">
+
+            <p class="text-muted mb-3">
+
+                Deleting your account is permanent.
+                This action cannot be undone.
+
+            </p>
+
+            <ul class="small text-muted mb-4">
+
+                <li>Your profile will be permanently deleted.</li>
+
+                <li>All your listings will be deleted.</li>
+
+                <li>All reviews written by you will be deleted.</li>
+
+                <li>You will be logged out immediately.</li>
+
+            </ul>
+
+            <form
+                action="/profile?_method=DELETE"
+                method="POST"
+                onsubmit="return confirm('Are you sure? This will permanently delete your account and all associated data.');">
+
+                <button
+                    type="submit"
+                    class="btn btn-outline-danger w-100 rounded-pill">
+
+                    <i class="bi bi-trash3-fill me-2"></i>
+
+                    Delete My Account
+
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
-    <div class="card-body">
-
-        <p class="text-muted mb-3">
-
-            Deleting your account is permanent. This action cannot be undone.
-
-        </p>
-
-        <ul class="small text-muted mb-4">
-
-            <li>Your profile will be permanently deleted.</li>
-
-            <li>All your listings will be deleted.</li>
-
-            <li>All reviews written by you will be deleted.</li>
-
-            <li>You will be logged out immediately.</li>
-
-        </ul>
-
-        <form
-            action="/profile?_method=DELETE"
-            method="POST"
-            onsubmit="return confirm('Are you sure? This will permanently delete your account and all associated data.');">
-
-            <button
-                type="submit"
-                class="btn btn-outline-danger w-100 rounded-pill">
-
-                <i class="bi bi-trash3-fill me-2"></i>
-
-                Delete My Account
-
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
+<% } %>
                             
 
                         </div>

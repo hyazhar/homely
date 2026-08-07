@@ -51,13 +51,26 @@ module.exports.updateProfile = async (req, res) => {
 };
 
 module.exports.deleteAccount = async (req, res, next) => {
+    // Prevent admin from deleting their own account
+    if (req.user.role === "admin") {
+        req.flash(
+            "error",
+            "Admin account cannot be deleted."
+        );
+        return res.redirect("/profile");
+    }
     await User.findByIdAndDelete(req.user._id);
-    req.logout(function(err){
-        if(err) return next(err);
-        req.flash("success","Account deleted successfully.");
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+
+        req.flash(
+            "success",
+            "Account deleted successfully."
+        );
         res.redirect("/");
     });
-
 };
 
 module.exports.renderSignupForm = (req, res) => {
