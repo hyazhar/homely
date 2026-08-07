@@ -5,6 +5,7 @@ const Listing=require('../models/listingSchema');
 // Login Middleware
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
+        req.session.redirectUrl=req.originaalUrl;
         req.flash("error", "You must be logged in first.");
         return res.redirect("/login");
     }
@@ -78,6 +79,13 @@ module.exports.isAdmin = (req, res, next) => {
         req.flash("error", "Access Denied!");
 
         return res.redirect("/");
+    }
+    next();
+};
+module.exports.saveRedirectUrl = (req, res, next) => {
+    if (req.session.redirectUrl) {
+        res.locals.redirectUrl = req.session.redirectUrl;
+
     }
     next();
 };

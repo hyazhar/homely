@@ -69,9 +69,14 @@ module.exports.signup = async (req, res) => {
         username,
         email,
     });
-    await User.register(user, password);
-    req.flash("success", "Welcome to Homely!");
-    res.redirect("/listings");
+    const registeredUser= await User.register(user, password);
+    req.login(registeredUser,(err)=>{
+        if (err){
+            return next(err);
+        }
+        req.flash("success",`Welcome to Homely ${registeredUser.username}`);
+        res.redirect("/listings");
+    })
 };
 
 module.exports.renderLoginForm = (req, res) => {
@@ -80,7 +85,9 @@ module.exports.renderLoginForm = (req, res) => {
 
 module.exports.login = (req, res) => {
     req.flash("success", "Welcome back!");
-    res.redirect("/listings");
+    const redirectUrl = res.locals.redirectUrl || "/listings";
+    delete req.session.redirectUrl;
+    res.redirect(redirectUrl);
 };
 
 module.exports.logout = (req, res, next) => {
