@@ -49,6 +49,16 @@ const userSchema = new mongoose.Schema(
                     "https://cdn-icons-png.flaticon.com/512/149/149071.png",
             },
         },
+        hostApplication: {
+             status: {
+              type: String,
+             enum: ["none", "pending", "approved", "rejected"],
+             default: "none"
+          },
+              appliedAt: {
+                    type: Date
+             }
+            }   
     },
     {
         timestamps: true,

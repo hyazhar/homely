@@ -25,6 +25,7 @@ module.exports.index = async (req, res) => {
 module.exports.renderCreatelisting= async(req,res)=>{
     res.render('listings/new');
 };
+
 module.exports.createListing= async(req,res)=>{
     const newListing = new Listing(req.body.listing);
     // Save image from Cloudinary

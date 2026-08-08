@@ -34,6 +34,7 @@ router.route("/login")
 router.get("/logout", usersController.logout);
 
 router.get("/dashboard",isLoggedIn,wrapAsync(usersController.dashboard));
-
+router.post("/profile/apply-host",isLoggedIn,wrapAsync(usersController.applyForHost)
+);
 
 module.exports = router;

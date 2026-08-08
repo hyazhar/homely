@@ -79,3 +79,52 @@ module.exports.deleteReview = async (req, res) => {
     res.redirect("/admin/reviews");
 
 };
+
+module.exports.hostApplications = async (req, res) => {
+    const users = await User.find({
+        role: "user",
+        "hostApplication.status": "pending"
+    }).sort({
+        "hostApplication.appliedAt": -1
+    });
+
+    res.render("admin/hostApplications", {users });
+};
+
+module.exports.approveHost = async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+        req.flash("error", "User not found.");
+        return res.redirect("/admin/host-applications");
+    }
+    if (user.role !== "user") {
+        req.flash("error", "This user cannot be approved.");
+        return res.redirect("/admin/host-applications");
+    }
+    user.role = "host";
+    user.hostApplication.status = "approved";
+    await user.save();
+    req.flash(
+        "success",
+        `${user.username} is now a host.`
+    );
+
+    res.redirect("/admin/host-applications");
+};
+
+module.exports.rejectHost = async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+        req.flash("error", "User not found.");
+        return res.redirect("/admin/host-applications");
+    }
+    user.hostApplication.status = "rejected";
+    await user.save();
+    req.flash(
+        "success",
+        `${user.username}'s host application was rejected.`
+    );
+    res.redirect("/admin/host-applications");
+};

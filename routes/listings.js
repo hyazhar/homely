@@ -5,7 +5,7 @@ const listingsController = require("../controllers/listings");
 const multer = require("multer");
 const { storage } = require("../config/cloudConfig");
 const upload = multer({ storage });
-const {isLoggedIn,isOwner}= require('../middleware/Isloggedin');
+const {isLoggedIn,isOwner,isHost}= require('../middleware/Isloggedin');
 const {validateListing}= require('../middleware/Isloggedin');
 
 
@@ -15,7 +15,7 @@ router.get("/",isLoggedIn,wrapAsync(listingsController.index)
 );
 
 // CREATE Listings
-router.get('/new',isLoggedIn,wrapAsync(listingsController.renderCreatelisting));
+router.get('/new',isLoggedIn,isHost,wrapAsync(listingsController.renderCreatelisting));
 router.post('/',isLoggedIn,validateListing,upload.single("listing[image]"),wrapAsync(listingsController.createListing))
 
 // GET /listings/:id

@@ -1,0 +1,144 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold">
+                Host Applications
+            </h2>
+
+            <p class="text-muted mb-0">
+                Review users who want to become hosts.
+            </p>
+        </div>
+
+    </div>
+
+
+    <% if (users.length === 0) { %>
+
+        <div class="card border-0 shadow-sm rounded-4">
+
+            <div class="card-body text-center py-5">
+
+                <i class="bi bi-house-heart display-3 text-secondary"></i>
+
+                <h4 class="mt-3">
+                    No Pending Applications
+                </h4>
+
+                <p class="text-muted">
+                    There are currently no host applications to review.
+                </p>
+
+            </div>
+
+        </div>
+
+    <% } else { %>
+
+
+        <div class="row g-4">
+
+            <% users.forEach(user => { %>
+
+                <div class="col-lg-6">
+
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                        <div class="card-body p-4">
+
+                            <div class="d-flex align-items-center mb-4">
+
+                                <img
+                                    src="<%= user.avatar?.url || '/images/default-avatar.png' %>"
+                                    width="65"
+                                    height="65"
+                                    class="rounded-circle border"
+                                    style="object-fit:cover;">
+
+                                <div class="ms-3">
+
+                                    <h5 class="fw-bold mb-1">
+                                        <%= user.username %>
+                                    </h5>
+
+                                    <p class="text-muted mb-0">
+                                        <%= user.email %>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <span class="badge bg-warning text-dark">
+                                    Pending Application
+                                </span>
+
+                            </div>
+
+
+                            <p class="text-muted small">
+
+                                Applied on:
+
+                                <strong>
+                                    <%= user.hostApplication.appliedAt.toDateString() %>
+                                </strong>
+
+                            </p>
+
+
+                            <div class="d-flex gap-2 mt-4">
+
+                                <form
+                                    action="/admin/host-applications/<%= user._id %>/approve"
+                                    method="POST">
+
+                                    <button
+                                        class="btn btn-success rounded-pill px-4">
+
+                                        <i class="bi bi-check-circle me-1"></i>
+
+                                        Approve
+
+                                    </button>
+
+                                </form>
+
+
+                                <form
+                                    action="/admin/host-applications/<%= user._id %>/reject"
+                                    method="POST">
+
+                                    <button
+                                        class="btn btn-outline-danger rounded-pill px-4">
+
+                                        <i class="bi bi-x-circle me-1"></i>
+
+                                        Reject
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</div>

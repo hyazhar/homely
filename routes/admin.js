@@ -28,4 +28,11 @@ router.delete("/listings/:id", wrapAsync(adminController.deleteListing));
 // Delete Review
 router.delete("/reviews/:id", wrapAsync(adminController.deleteReview));
 
+router.get("/host-applications",wrapAsync(adminController.hostApplications)
+);
+router.post( "/host-applications/:id/approve", wrapAsync(adminController.approveHost)
+);
+
+router.post("/host-applications/:id/reject",wrapAsync(adminController.rejectHost)
+);
 module.exports = router;

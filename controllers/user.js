@@ -119,3 +119,35 @@ module.exports.dashboard = async(req, res) => {
     });
     res.render("dashboard", {listings});
 };
+
+module.exports.applyForHost = async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+        req.flash("error", "User not found.");
+        return res.redirect("/profile");
+    }
+    if (user.role === "admin") {
+        req.flash("error", "Admin cannot apply for host.");
+        return res.redirect("/profile");
+    }
+    if (user.role === "host") {
+        req.flash("error", "You are already a host.");
+        return res.redirect("/profile");
+    }
+    if (user.hostApplication.status === "pending") {
+        req.flash("error", "Your host application is already pending.");
+        return res.redirect("/profile");
+    }
+
+    user.hostApplication.status = "pending";
+    user.hostApplication.appliedAt = new Date();
+
+    await user.save();
+
+    req.flash(
+        "success",
+        "Host application submitted successfully!"
+    );
+
+    res.redirect("/profile");
+};

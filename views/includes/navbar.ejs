@@ -75,16 +75,30 @@
 
     <% } %>
 
-    <li class="nav-item me-lg-3">
+    <% if (currentUser && 
+       (currentUser.role === "host" || currentUser.role === "admin")) { %>
 
-        <a href="/listings/new"
-           class="nav-link fw-semibold host-link">
+    <a
+        href="/listings/new"
+        class="nav-link fw-semibold host-link">
 
-            Become a Host
+        <i class="bi bi-house-add me-1"></i>
+        Create Listing
 
-        </a>
+    </a>
 
-    </li>
+<% } else if (currentUser) { %>
+
+    <a
+        href="/profile"
+        class="nav-link fw-semibold host-link">
+
+        <i class="bi bi-house-heart me-1"></i>
+        Become a Host
+
+    </a>
+
+<% } %>
 
     <li class="nav-item dropdown">
 

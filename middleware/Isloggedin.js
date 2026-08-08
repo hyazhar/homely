@@ -2,6 +2,7 @@ const ExpressError = require("../utils/ExpressError");
 const { listingSchema,reviewSchema } = require("../schemas");
 const Review = require("../models/reviewSchema");
 const Listing=require('../models/listingSchema');
+
 // Login Middleware
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -85,6 +86,18 @@ module.exports.isAdmin = (req, res, next) => {
 module.exports.saveRedirectUrl = (req, res, next) => {
     if (req.session.redirectUrl) {
         res.locals.redirectUrl = req.session.redirectUrl;
+    }
+    next();
+};
+
+module.exports.isHost = (req, res, next) => {
+    if (!req.user) {
+        req.flash("error", "You must be logged in.");
+        return res.redirect("/login");
+    }
+    if (req.user.role !== "host") {
+        req.flash("error", "Only approved hosts can create listings.");
+        return res.redirect("/listings");
     }
     next();
 };
